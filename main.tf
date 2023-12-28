@@ -1,9 +1,3 @@
-## First Block should be Provider Information
-
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_instance" "from-terraform" {
   ami                    = var.os-name
   instance_type          = var.instance_type
@@ -13,5 +7,4 @@ resource "aws_instance" "from-terraform" {
     name        = var.tag-name
     description = var.ec2-description
   }
-
 }

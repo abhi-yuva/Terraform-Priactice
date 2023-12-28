@@ -25,7 +25,7 @@ variable "region" {
 variable "tag-name" {
     type = string
     description = "Name of your EC2 Instance"
-    default = "Terraform-EC2"  
+    default = "EC2 Machine"  
 }
 
 variable "ec2-description" {
