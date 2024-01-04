@@ -1,4 +1,5 @@
 resource "aws_instance" "from-terraform" {
+  # count = 2
   ami                    = var.os-name
   instance_type          = var.instance_type
   vpc_security_group_ids = var.sg_ids
