@@ -7,20 +7,47 @@ resource "aws_vpc" "my-vpc" {
   }
 }
 
+# resource "aws_security_group" "my-sercurity-group" {
+#   name        = "my-security-group"
+#   description = "Created from Terraform"
+#   vpc_id      = aws_vpc.my-vpc.id
+
+#   ingress  {
+#     description = "ingress rules"
+#     protocol    = "https"
+#     from_port   = 443
+#     to_port     = 443
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+
+#   egress  {
+#     description = "ingress rules"
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["0.0.0.0/0"]
+
+#   }
+# }
+
 resource "aws_security_group" "my-sercurity-group" {
   name        = "my-security-group"
   description = "Created from Terraform"
   vpc_id      = aws_vpc.my-vpc.id
 
-  ingress  {
-    description = "ingress rules"
-    protocol    = "https"
-    from_port   = 443
-    to_port     = 443
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "ingress" {
+    for_each = var.security-group_ingress
+    content {
+      description = ingress.value.description
+      protocol    = ingress.value.protocol
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      cidr_blocks = ingress.value.cidr_blocks
+
+    }
   }
 
-  egress  {
+  egress {
     description = "ingress rules"
     from_port   = 0
     to_port     = 0

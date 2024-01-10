@@ -34,3 +34,32 @@ variable "ec2-description" {
     default = "Created from Terraform"
   
 }
+
+variable "security-group_ingress" {
+  type        = map(object({
+    description = string
+      protocol    = string
+      from_port   = number
+      to_port     = number
+      cidr_blocks = list(string) 
+  }))
+  description = "Security Group Values"
+  default = {
+    "first" = {
+      description = "ingress rules"
+      protocol    = "https"
+      from_port   = 443
+      to_port     = 443
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    "second" = {
+      description = "ingress rules1"
+      protocol    = "http"
+      from_port   = 80
+      to_port     = 80
+      cidr_blocks  = ["0.0.0.0/0"]
+    }
+  }
+
+
+}
