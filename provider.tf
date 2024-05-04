@@ -1,14 +1,12 @@
-## First Block should be Provider Information
-
 provider "aws" {
-  region = var.region
+  region = var.location
 }
 
 terraform {
-  backend "s3" {
-    bucket = "bucket_name"
-    key = "path-to-store-state-file"
-    region = "region"
-    
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = var.provider-version
+    }
   }
 }
