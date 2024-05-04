@@ -16,5 +16,4 @@ variable "location" {
 variable "provider-version" {
     type = string
     default = "~> 5.0"
-  
 }
