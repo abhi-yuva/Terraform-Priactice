@@ -12,8 +12,3 @@ variable "location" {
     type = string
     default = "us-west-2" 
 }
-
-variable "provider-version" {
-    type = string
-    default = "~> 5.0"
-}
