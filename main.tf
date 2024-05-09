@@ -5,7 +5,7 @@ resource "aws_instance" "my-ec2" {
 
 
   tags = {
-    Name = "Through Terraform ${count.index}"
+    Name = var.environment[count.index]
   }
 
 }
